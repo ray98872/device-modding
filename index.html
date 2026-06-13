@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Ray Mahbub on device modding — soft-mods, jailbreaks and homebrew across mobile, PlayStation, Nintendo and Xbox, since 2011." />
+<title>Device Modding &amp; Hardware Tinkering — Ray Mahbub</title>
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230a0a0b"/><text x="5" y="23" font-family="Georgia, serif" font-style="italic" font-size="17" fill="%23c97e4e">rm</text></svg>' />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0a0b; --cream:#f2f0ea; --faint:#98948a; --dim:#5b574e;
+  --copper:#c97e4e; --copper-soft:#e0a075; --line:rgba(242,240,234,.08);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--cream);
+  font-family:"Inter",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased; line-height:1.6;
+}
+.halo{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 45% at 50% -5%,rgba(201,126,78,.07),transparent)}
+.wrap{position:relative;max-width:1060px;margin:0 auto;padding:0 22px}
+header{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+.wordmark{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:18px;color:var(--cream);text-decoration:none}
+header nav a{color:var(--faint);text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-left:22px;transition:color .3s}
+header nav a:hover{color:var(--copper-soft)}
+.hero{padding:64px 0 40px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(242,240,234,.04);border-radius:999px;padding:6px 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--copper);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,126,78,.5)}50%{box-shadow:0 0 0 5px rgba(201,126,78,0)}}
+h1{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:600;letter-spacing:-.02em;line-height:1.06;margin:20px 0 16px;max-width:780px}
+h1 em{font-family:"Fraunces",Georgia,serif;font-weight:300;color:var(--copper)}
+.lede{color:var(--faint);max-width:680px;font-size:16px}
+.lede + .lede{margin-top:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:42px 0 8px}
+.stat{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:linear-gradient(180deg,rgba(242,240,234,.045),rgba(242,240,234,.018))}
+.stat b{display:block;font-size:24px;font-weight:600;color:var(--cream)}
+.stat span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+section{padding:54px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.sec-head i{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--copper);font-size:14px}
+.sec-head h2{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.sec-head::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.card{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(242,240,234,.045),rgba(242,240,234,.018));box-shadow:0 -24px 70px -32px rgba(242,240,234,.07) inset;padding:24px;transition:border-color .35s var(--ease),transform .35s var(--ease)}
+.card:hover{border-color:rgba(201,126,78,.35);transform:translateY(-3px)}
+.rig{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.rig .glyph{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:rgba(201,126,78,.08);display:flex;align-items:center;justify-content:center;flex:none}
+.rig .glyph svg{width:22px;height:22px;stroke:var(--copper-soft);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.rig h3{font-size:16px;font-weight:600;color:var(--cream)}
+.rig .tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.08em;color:var(--dim);text-transform:uppercase;margin-top:2px}
+.feats li{list-style:none;font-size:14px;color:var(--faint);padding:11px 0;border-top:1px solid var(--line);display:flex;gap:11px}
+.feats li:first-child{border-top:none;padding-top:2px}
+.feats li::before{content:"—";color:var(--copper);flex:none}
+.feats b{color:var(--cream);font-weight:500}
+.kbd{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--copper-soft);background:rgba(201,126,78,.08);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.note{display:flex;gap:16px;margin-top:30px;border-top:1px solid var(--line);padding-top:24px}
+.note i{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--copper);font-size:15px;flex:none;padding-top:2px}
+.note p{font-size:14px;color:var(--faint)}
+footer{margin-top:64px;border-top:1px solid var(--line);padding:26px 0 40px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim)}
+footer a{color:var(--faint);text-decoration:none}
+footer a:hover{color:var(--copper-soft)}
+.fade{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .fade{opacity:1;transform:none;transition:none}
+  .dot{animation:none}
+  html{scroll-behavior:auto}
+  .card:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="halo" aria-hidden="true"></div>
+<div class="wrap">
+
+<header>
+  <a class="wordmark" href="https://github.com/ray98872">ray mahbub</a>
+  <nav>
+    <a href="#mobile">Mobile</a>
+    <a href="#playstation">PlayStation</a>
+    <a href="#nintendo">Nintendo</a>
+    <a href="#xbox">Xbox</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="pill"><span class="dot"></span> homebrew · custom firmware · since 2011</p>
+  <h1>Tinkering with hardware, exploring the <em>homebrew community</em>.</h1>
+  <p class="lede">I enjoy tinkering with hardware and exploring the homebrew community. It started back in 2011 when I was 11 years old, discovering XDA Developers to install custom ROMs on my Android phones. Since then, by following technical guides and community documentation, I've successfully soft-modded and jailbroken several generations of devices and consoles to run custom firmware and homebrew applications.</p>
+  <p class="lede">It's a fun way to learn about how different systems handle boot sequences and file management.</p>
+  <div class="stats">
+    <div class="stat fade"><b>2011</b><span>started · age 11</span></div>
+    <div class="stat fade"><b>4</b><span>ecosystems</span></div>
+    <div class="stat fade"><b>11</b><span>devices &amp; consoles</span></div>
+    <div class="stat fade"><b>XDA</b><span>where it began</span></div>
+  </div>
+</section>
+
+<section id="mobile">
+  <div class="sec-head"><i>01</i><h2>Mobile &amp; Tablets</h2></div>
+  <div class="card fade">
+    <div class="rig">
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="10" y1="18.5" x2="14" y2="18.5"/></svg></span>
+      <div><h3>Custom ROMs &amp; jailbreaks</h3><div class="tag">android · ios · xda developers</div></div>
+    </div>
+    <ul class="feats">
+      <li>Installed custom <b>Android ROMs</b> on an <b>HTC Desire</b> and <b>HTC Sensation</b> via XDA Developers.</li>
+      <li>Jailbroke an <b>iPad 3</b> in 2013.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="playstation">
+  <div class="sec-head"><i>02</i><h2>PlayStation Ecosystem</h2></div>
+  <div class="card fade">
+    <div class="rig">
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9.5c0-2 1.5-3.5 3.5-3.5h11C19.5 6 21 7.5 21 9.5s-1.5 3.5-3.5 3.5H15l-1.5 5h-3L9 13H6.5C4.5 13 3 11.5 3 9.5Z"/></svg></span>
+      <div><h3>FreeMcBoot, CFW &amp; PPPwn</h3><div class="tag">ps2 · ps3 · ps4</div></div>
+    </div>
+    <ul class="feats">
+      <li>Installed <b>FreeMcBoot</b> on the <b>PS2</b> via the <span class="kbd">007: Agent Under Fire</span> disc swap trick.</li>
+      <li>Configured <b>Custom Firmware</b> on a Fat <b>PS3</b> and <b>Hybrid Firmware</b> on a Slim model.</li>
+      <li>Executed a tethered <b>PPPwn jailbreak</b> on the <b>PS4</b> using a localized ethernet dongle.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="nintendo">
+  <div class="sec-head"><i>03</i><h2>Nintendo Ecosystem</h2></div>
+  <div class="card fade">
+    <div class="rig">
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="6"/><line x1="7" y1="10.5" x2="7" y2="13.5"/><line x1="5.5" y1="12" x2="8.5" y2="12"/><circle cx="16.5" cy="10.8" r="1.1" fill="currentColor" stroke="none"/><circle cx="18.4" cy="13.2" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+      <div><h3>R4, LetterBomb &amp; Aroma</h3><div class="tag">2ds xl · wii · wii u</div></div>
+    </div>
+    <ul class="feats">
+      <li>Ran <b>R4 environments</b> on the <b>2DS XL</b>.</li>
+      <li>Executed the classic <b>LetterBomb</b> exploit on the original <b>Wii</b>.</li>
+      <li>Installed the <b>Aroma environment</b> on the <b>Wii U</b>.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="xbox">
+  <div class="sec-head"><i>04</i><h2>Xbox</h2></div>
+  <div class="card fade">
+    <div class="rig">
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M6 19c2-5 4-7 6-9 2 2 4 4 6 9M5.5 6c2.5 1 4.5 3 6.5 5.5M18.5 6c-2.5 1-4.5 3-6.5 5.5"/></svg></span>
+      <div><h3>JTAG hardware mod</h3><div class="tag">xbox 360 · hypervisor bypass</div></div>
+    </div>
+    <ul class="feats">
+      <li>Successfully performed the classic <b>JTAG hardware mod</b> on the <b>Xbox 360</b> to bypass the hypervisor.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <i>note</i>
+    <p>Every mod here was learned the same way it started in 2011 — reading community documentation,
+    following technical guides, and understanding how each system handles its boot sequence and file management.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© <span id="y">2026</span> Ray Mahbub · a hobby in homebrew, soft-mods and custom firmware</p>
+  <p><a href="https://github.com/ray98872">github</a></p>
+</footer>
+
+</div>
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".fade").forEach((el) => io.observe(el));
+} else {
+  document.querySelectorAll(".fade").forEach((el) => el.classList.add("in"));
+}
+</script>
+</body>
+</html>
